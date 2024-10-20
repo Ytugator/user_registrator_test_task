@@ -34,7 +34,7 @@ class TaskCest{
         $userData += ['respData' => $respData];
 
         # Делаем гет запрос с id полученном при регистрации
-        $I->sendGet('user/get?id='.$userData['respData']['id']);
+        $I->sendGet($I->userGetUrl.'?id='.$userData['respData']['id']);
         $I->seeResponseCodeIsSuccessful();
         $I->seeResponseIsJson();
 
@@ -43,12 +43,12 @@ class TaskCest{
     }
 
     public function getTest(ApiTester $I){
-        $I->sendGet('user/get/');
+        $I->sendGet($I->userGetUrl);
         $I->seeResponseCodeIsSuccessful();
 
         if ($I->grabHttpHeader('Content-Length') == 0){
             $I->makeUserRegistration();
-            $I->sendGet('user/get/');
+            $I->sendGet($I->userGetUrl);
         }
 
         $I->seeResponseIsJson(); # в принципе можно проверить, что utf-8 отдаётся

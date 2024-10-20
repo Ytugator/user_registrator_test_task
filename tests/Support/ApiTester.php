@@ -26,6 +26,7 @@ class ApiTester extends \Codeception\Actor
 
 
     public string $userRegUrl = 'user/create/';
+    public string $userGetUrl = 'user/get/';
     /**
      * Define custom actions here
      */
